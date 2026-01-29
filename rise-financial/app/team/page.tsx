@@ -7,74 +7,92 @@ const team = [
     name: 'Thomas Hlohinec',
     role: 'CEO & Wealth Advisor',
     slug: 'thomas-hlohinec',
+    bio: 'Thomas founded Rise Financial Partners to fill a void in the industry—a need for trusted, values-aligned financial advice. His practice focuses on helping Christian business owners transition from growing their business to selling it.',
     image: '/images/team/thomas-hlohinec.png',
   },
   {
     name: 'Josh Elmore, CFP®',
     role: 'Director of Wealth Management',
     slug: 'josh-elmore',
+    bio: 'Josh specializes in comprehensive financial planning and investment management, with a focus on helping families build and preserve wealth across generations.',
     image: '/images/team/josh-elmore.jpg',
   },
   {
     name: 'Josiah Robison',
     role: 'CCO | CTO & Wealth Advisor',
     slug: 'josiah-robison',
+    bio: 'Josiah brings analytical rigor and strategic thinking to Rise, supporting the firm with technology initiatives, compliance oversight, and operational excellence.',
     image: '/images/team/josiah-robison.jpg',
   },
   {
     name: 'Jeff Speers, RICP®',
     role: 'Business Consultant & Wealth Advisor',
     slug: 'jeff-speers',
+    bio: 'Jeff brings 20 years of experience serving families and small businesses as a trusted financial advisor, specializing in retirement income and business consulting.',
     image: '/images/team/jeff-speers.png',
   },
 ]
 
 export default function TeamPage() {
   return (
-    <div className="min-h-screen bg-rise-cream pt-20">
+    <div className="pt-20 bg-rise-cream">
       {/* Hero */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <h1 className="font-display text-4xl md:text-5xl font-semibold text-rise-navy mb-6">
-            Our Team
-          </h1>
-          <p className="text-lg text-rise-slate max-w-2xl leading-relaxed">
-            Dedicated professionals committed to helping you achieve your financial goals with clarity, confidence, and integrity.
-          </p>
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute top-0 right-0 w-96 h-96 bg-rise-blue/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-64 h-64 bg-rise-gold/10 rounded-full blur-3xl"></div>
+        
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="max-w-2xl">
+            <div className="inline-flex items-center gap-2 px-4 py-2 bg-rise-navy/5 rounded-full mb-6">
+              <span className="w-2 h-2 bg-rise-gold rounded-full"></span>
+              <span className="text-sm font-medium text-rise-navy">Our People</span>
+            </div>
+            <h1 className="font-display text-4xl md:text-5xl font-semibold text-rise-navy mb-6">
+              Meet the Team
+            </h1>
+            <p className="text-lg text-rise-slate leading-relaxed">
+              Our team of dedicated advisors brings diverse expertise and a shared commitment to helping you achieve financial success. Get to know the people who will be your partners in building wealth.
+            </p>
+          </div>
         </div>
       </section>
 
       {/* Team Grid */}
       <section className="pb-24">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8">
-          <div className="grid sm:grid-cols-2 gap-8 md:gap-12">
-            {team.map((member) => (
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 gap-8">
+            {team.map((member, i) => (
               <Link
-                key={member.slug}
+                key={i}
                 href={`/team/${member.slug}`}
-                className="group"
+                className="group bg-white rounded-2xl overflow-hidden shadow-lg shadow-rise-navy/5 hover:shadow-2xl hover:shadow-rise-navy/10 transition-all duration-500"
               >
-                {/* Photo */}
-                <div className="aspect-[4/5] relative rounded-2xl overflow-hidden bg-rise-navy/5 mb-6">
-                  <Image 
-                    src={member.image} 
-                    alt={member.name}
-                    fill
-                    className="object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                </div>
-                
-                {/* Info */}
-                <div className="flex items-start justify-between">
-                  <div>
-                    <h2 className="font-display text-xl font-semibold text-rise-navy group-hover:text-rise-blue transition-colors">
-                      {member.name}
-                    </h2>
-                    <p className="text-rise-slate text-sm mt-1">
-                      {member.role}
-                    </p>
+                <div className="flex flex-col sm:flex-row">
+                  {/* Team member image */}
+                  <div className="sm:w-48 h-48 sm:h-auto bg-gradient-to-br from-rise-navy to-rise-blue flex-shrink-0 relative overflow-hidden">
+                    <Image 
+                      src={member.image} 
+                      alt={member.name}
+                      fill
+                      className="object-cover"
+                    />
                   </div>
-                  <ArrowRight className="w-5 h-5 text-rise-navy/30 group-hover:text-rise-blue group-hover:translate-x-1 transition-all mt-1" />
+                  
+                  <div className="p-6 flex flex-col justify-between flex-grow">
+                    <div>
+                      <h2 className="font-display text-2xl font-semibold text-rise-navy mb-1 group-hover:text-rise-blue transition-colors">
+                        {member.name}
+                      </h2>
+                      <p className="text-rise-gold font-medium mb-4">{member.role}</p>
+                      <p className="text-rise-slate text-sm leading-relaxed line-clamp-3">
+                        {member.bio}
+                      </p>
+                    </div>
+                    <div className="flex items-center gap-2 mt-4 text-rise-navy group-hover:text-rise-blue transition-colors">
+                      <span className="text-sm font-medium">View Profile</span>
+                      <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+                    </div>
+                  </div>
                 </div>
               </Link>
             ))}
@@ -82,22 +100,27 @@ export default function TeamPage() {
         </div>
       </section>
 
-      {/* CTA */}
+      {/* Join Us CTA */}
       <section className="py-16 bg-white">
-        <div className="max-w-5xl mx-auto px-6 lg:px-8 text-center">
-          <h2 className="font-display text-2xl md:text-3xl font-semibold text-rise-navy mb-4">
-            Ready to get started?
-          </h2>
-          <p className="text-rise-slate mb-8 max-w-md mx-auto">
-            Schedule a conversation with one of our advisors today.
-          </p>
-          <Link
-            href="/contact"
-            className="inline-flex items-center gap-2 px-8 py-3 bg-rise-navy text-white rounded-full hover:bg-rise-blue transition-colors font-medium"
-          >
-            Book a Consultation
-            <ArrowRight className="w-4 h-4" />
-          </Link>
+        <div className="max-w-7xl mx-auto px-6 lg:px-8">
+          <div className="bg-rise-navy rounded-2xl p-8 md:p-12 text-center relative overflow-hidden">
+            <div className="absolute top-0 right-0 w-64 h-64 bg-rise-blue/20 rounded-full blur-3xl"></div>
+            <div className="relative">
+              <h2 className="font-display text-3xl md:text-4xl font-semibold text-white mb-4">
+                Interested in Joining Our Team?
+              </h2>
+              <p className="text-rise-sky mb-8 max-w-xl mx-auto">
+                We're always looking for talented individuals who share our values and commitment to exceptional client service.
+              </p>
+              <Link
+                href="/contact"
+                className="inline-flex items-center gap-2 px-8 py-4 text-rise-navy bg-white rounded-full hover:bg-rise-cream transition-colors font-medium"
+              >
+                Get in Touch
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </div>
         </div>
       </section>
     </div>
