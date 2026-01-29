@@ -1,5 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Users, Target, Shield, Heart, TrendingUp, Briefcase, Building } from 'lucide-react'
+import HeroCardCarousel from '@/components/HeroCardCarousel'
 
 export default function Home() {
   return (
@@ -49,49 +50,9 @@ export default function Home() {
               </div>
             </div>
             
-            {/* Hero Image / Visual */}
-            <div className="relative hidden lg:block">
-              <div className="relative aspect-square max-w-lg ml-auto">
-                {/* Layered geometric shapes */}
-                <div className="absolute inset-0 bg-gradient-to-br from-rise-navy to-rise-blue rounded-3xl transform rotate-3 opacity-10"></div>
-                <div className="absolute inset-4 bg-gradient-to-br from-rise-blue to-rise-sky rounded-3xl transform -rotate-2 opacity-20"></div>
-                <div className="absolute inset-8 bg-white rounded-3xl shadow-2xl overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-rise-cream to-white"></div>
-                  <div className="relative p-8 flex flex-col justify-center h-full">
-                    <div className="space-y-6">
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-rise-navy/10 flex items-center justify-center">
-                          <TrendingUp className="w-8 h-8 text-rise-navy" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-rise-slate">Portfolio Growth</p>
-                          <p className="font-display text-2xl font-semibold text-rise-navy">Optimized</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-rise-gold/20 flex items-center justify-center">
-                          <Shield className="w-8 h-8 text-rise-gold" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-rise-slate">Risk Management</p>
-                          <p className="font-display text-2xl font-semibold text-rise-navy">Protected</p>
-                        </div>
-                      </div>
-                      <div className="flex items-center gap-4">
-                        <div className="w-16 h-16 rounded-2xl bg-rise-blue/10 flex items-center justify-center">
-                          <Heart className="w-8 h-8 text-rise-blue" />
-                        </div>
-                        <div>
-                          <p className="text-sm text-rise-slate">Legacy Planning</p>
-                          <p className="font-display text-2xl font-semibold text-rise-navy">Secured</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                {/* Accent dot */}
-                <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-rise-gold rounded-full opacity-80"></div>
-              </div>
+            {/* Hero Card Carousel */}
+            <div className="hidden lg:block">
+              <HeroCardCarousel />
             </div>
           </div>
         </div>
