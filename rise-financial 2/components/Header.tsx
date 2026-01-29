@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import Link from 'next/link'
+import Image from 'next/image'
 import { Menu, X, ChevronDown } from 'lucide-react'
 
 const navigation = [
@@ -37,17 +38,15 @@ export default function Header() {
       <nav className="mx-auto max-w-7xl px-6 lg:px-8" aria-label="Top">
         <div className="flex h-20 items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-3 group">
-            <div className="relative">
-              <div className="w-12 h-12 rounded-full bg-gradient-to-br from-rise-navy to-rise-blue flex items-center justify-center transform group-hover:scale-105 transition-transform duration-300">
-                <span className="font-display text-white text-xl font-bold">R</span>
-              </div>
-              <div className="absolute -bottom-1 -right-1 w-4 h-4 bg-rise-gold rounded-full opacity-80"></div>
-            </div>
-            <div className="hidden sm:block">
-              <p className="font-display text-xl font-semibold text-rise-navy leading-tight">Rise Financial</p>
-              <p className="text-xs text-rise-slate tracking-wider uppercase">Partners</p>
-            </div>
+          <Link href="/" className="flex items-center group">
+            <Image
+              src="/images/logo.png"
+              alt="Rise Financial Partners"
+              width={200}
+              height={60}
+              className="h-14 w-auto transform group-hover:scale-105 transition-transform duration-300"
+              priority
+            />
           </Link>
 
           {/* Desktop Navigation */}

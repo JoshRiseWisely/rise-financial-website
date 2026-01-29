@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import Image from 'next/image'
 import { ArrowRight, Linkedin, Mail } from 'lucide-react'
 
 const team = [
@@ -7,28 +8,28 @@ const team = [
     role: 'Partner & Wealth Advisor',
     slug: 'thomas-hlohinec',
     bio: 'Thomas brings extensive experience in wealth management and is passionate about helping clients achieve their financial goals through personalized strategies.',
-    image: '/team/thomas.jpg', // Placeholder - you'll add actual images
+    image: '/images/team/thomas-hlohinec.png',
   },
   {
     name: 'Josh Elmore',
     role: 'Partner & Wealth Advisor',
     slug: 'josh-elmore',
     bio: 'Josh specializes in comprehensive financial planning and investment management, with a focus on helping families build and preserve wealth across generations.',
-    image: '/team/josh.jpg',
+    image: '/images/team/josh-elmore.jpg',
   },
   {
     name: 'Josiah Robison',
     role: 'Wealth Advisor',
     slug: 'josiah-robison',
     bio: 'Josiah is dedicated to providing exceptional client service and helping individuals navigate their financial journey with confidence and clarity.',
-    image: '/team/josiah.jpg',
+    image: '/images/team/josiah-robison.jpg',
   },
   {
     name: 'Jeff Speers',
     role: 'Wealth Advisor',
     slug: 'jeff-speers',
     bio: 'Jeff brings a detail-oriented approach to financial planning, ensuring clients receive thorough analysis and thoughtful recommendations.',
-    image: '/team/jeff.jpg',
+    image: '/images/team/jeff-speers.png',
   },
 ]
 
@@ -67,21 +68,14 @@ export default function TeamPage() {
                 className="group bg-white rounded-2xl overflow-hidden shadow-lg shadow-rise-navy/5 hover:shadow-2xl hover:shadow-rise-navy/10 transition-all duration-500"
               >
                 <div className="flex flex-col sm:flex-row">
-                  {/* Image placeholder */}
+                  {/* Team member image */}
                   <div className="sm:w-48 h-48 sm:h-auto bg-gradient-to-br from-rise-navy to-rise-blue flex-shrink-0 relative overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <span className="font-display text-6xl text-white/20">
-                        {member.name.split(' ').map(n => n[0]).join('')}
-                      </span>
-                    </div>
-                    {/* Uncomment when you have actual images:
                     <Image 
                       src={member.image} 
                       alt={member.name}
                       fill
                       className="object-cover"
                     />
-                    */}
                   </div>
                   
                   <div className="p-6 flex flex-col justify-between flex-grow">
