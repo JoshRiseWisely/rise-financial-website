@@ -18,14 +18,7 @@ const navigation = [
     ]
   },
   { name: 'Services', href: '/services' },
-  { 
-    name: 'Community', 
-    href: '/community',
-    children: [
-      { name: 'Foundations & Endowments', href: '/community/foundations' },
-    ]
-  },
-  { name: 'Blog', href: '/blog' },
+  { name: 'Community', href: '/community' },
   { name: 'Contact', href: '/contact' },
 ]
 
@@ -42,9 +35,9 @@ export default function Header() {
             <Image
               src="/images/logo.png"
               alt="Rise Financial Partners"
-              width={200}
-              height={60}
-              className="h-14 w-auto transform group-hover:scale-105 transition-transform duration-300"
+              width={160}
+              height={50}
+              className="h-12 w-auto transform group-hover:scale-105 transition-transform duration-300"
               priority
             />
           </Link>
