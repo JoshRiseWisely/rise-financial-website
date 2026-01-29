@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import { ArrowRight, Users, Target, Shield, Heart, TrendingUp, Briefcase, Building } from 'lucide-react'
-import HeroCardCarousel from '@/components/HeroCardCarousel'
+import HeroCardCarousel from '../components/HeroCardCarousel'
 
 export default function Home() {
   return (
