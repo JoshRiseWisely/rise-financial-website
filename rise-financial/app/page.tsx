@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import { ArrowRight, Users, Target, Shield, Heart, TrendingUp, Briefcase, Building } from 'lucide-react'
 import HeroCardCarousel from '../components/HeroCardCarousel'
+import OpenChatButton from '../components/OpenChatButton'
 
 export default function Home() {
   return (
@@ -210,6 +211,29 @@ export default function Home() {
               </div>
             ))}
           </div>
+        </div>
+      </section>
+
+      {/* Fit Assessment CTA Section */}
+      <section className="py-24 bg-rise-cream relative">
+        <div className="max-w-4xl mx-auto px-6 lg:px-8 text-center">
+          <div className="inline-flex items-center gap-2 px-4 py-2 bg-rise-navy/5 rounded-full mb-6">
+            <span className="w-2 h-2 bg-rise-gold rounded-full animate-pulse"></span>
+            <span className="text-sm font-medium text-rise-navy">AI-Powered</span>
+          </div>
+
+          <h2 className="font-display text-4xl md:text-5xl font-semibold text-rise-navy mb-4">
+            See If Rise Is Right for You
+          </h2>
+          <p className="text-lg text-rise-slate max-w-2xl mx-auto mb-10">
+            Not sure where to start? Our virtual advisor can help you explore whether Rise Financial Partners is the right fit for your financial goals. It only takes a few minutes.
+          </p>
+
+          <OpenChatButton />
+
+          <p className="mt-4 text-sm text-rise-slate/60">
+            No account needed. No personal data stored.
+          </p>
         </div>
       </section>
 

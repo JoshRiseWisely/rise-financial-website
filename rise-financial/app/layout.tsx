@@ -1,7 +1,12 @@
 import './globals.css'
 import type { Metadata } from 'next'
+import dynamic from 'next/dynamic'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+
+const ChatWidget = dynamic(() => import('@/components/ChatWidget'), {
+  ssr: false,
+})
 
 export const metadata: Metadata = {
   title: 'Rise Financial Partners | Wealth Management Sarasota',
@@ -22,6 +27,7 @@ export default function RootLayout({
           {children}
         </main>
         <Footer />
+        <ChatWidget />
       </body>
     </html>
   )
