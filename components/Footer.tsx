@@ -1,24 +1,20 @@
 import Link from 'next/link'
-import { Mail, MapPin, Phone } from 'lucide-react'
+import { Mail, MapPin } from 'lucide-react'
 
 const footerLinks = {
   company: [
-    { name: 'About Us', href: '/about' },
     { name: 'Our Team', href: '/team' },
-    { name: 'Careers', href: '/careers' },
-    { name: 'Blog', href: '/blog' },
+    { name: 'Community', href: '/community' },
+    { name: 'Contact', href: '/contact' },
   ],
   services: [
     { name: 'Financial Planning', href: '/services#planning' },
     { name: 'Investment Management', href: '/services#investments' },
     { name: 'Business Consulting', href: '/services#business' },
-    { name: 'Foundations & Endowments', href: '/community/foundations' },
+    { name: 'Legacy Wealth', href: '/legacy-wealth' },
   ],
   resources: [
     { name: 'Client Portal', href: '/client-login' },
-    { name: 'FAQs', href: '/faq' },
-    { name: 'Disclosures', href: '/disclosures' },
-    { name: 'Privacy Policy', href: '/privacy' },
   ],
 }
 
@@ -28,7 +24,7 @@ export default function Footer() {
       {/* Decorative elements */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-rise-blue/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"></div>
       <div className="absolute bottom-0 left-0 w-64 h-64 bg-rise-gold/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"></div>
-      
+
       <div className="relative max-w-7xl mx-auto px-6 lg:px-8 py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-12">
           {/* Brand Column */}
@@ -102,7 +98,7 @@ export default function Footer() {
         <div className="mt-16 pt-8 border-t border-white/10">
           <div className="flex flex-col md:flex-row justify-between items-center gap-4">
             <p className="text-sm text-rise-sky/60">
-              © {new Date().getFullYear()} Rise Financial Partners LLC. All rights reserved.
+              &copy; {new Date().getFullYear()} Rise Financial Partners LLC. All rights reserved.
             </p>
             <p className="text-xs text-rise-sky/40 max-w-2xl text-center md:text-right">
               Rise Financial Partners LLC is a registered investment adviser in Florida. Registration does not imply a certain level of skill or training.

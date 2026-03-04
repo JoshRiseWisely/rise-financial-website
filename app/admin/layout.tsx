@@ -21,22 +21,12 @@ export default function AdminLayout({
           <a href="/admin/dashboard" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
             Dashboard
           </a>
-          <a href="/admin/blog" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
-            Blog Posts
-          </a>
-          <a href="/admin/pages" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
-            Pages
-          </a>
-          <a href="/admin/ai-assistant" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
-            AI Assistant
-          </a>
-          <a href="/admin/compliance" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
-            Compliance Queue
-          </a>
-          <a href="/admin/profile" className="block px-4 py-2 text-gray-700 hover:bg-gray-100 rounded-md">
-            My Profile
-          </a>
         </nav>
+        <div className="p-4 mt-auto border-t border-gray-200">
+          <a href="/" className="block px-4 py-2 text-sm text-gray-500 hover:text-gray-700">
+            &larr; Back to Site
+          </a>
+        </div>
       </aside>
 
       {/* Main Content */}

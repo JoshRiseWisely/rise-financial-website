@@ -1,6 +1,6 @@
 import Link from 'next/link'
 import Image from 'next/image'
-import { ArrowRight, Download, Calendar, Shield, Landmark, Heart, TrendingUp, Users, BookOpen, Quote, ChevronRight, Award, CheckCircle } from 'lucide-react'
+import { ArrowRight, Download, Calendar, Shield, Landmark, Heart, TrendingUp, BookOpen, Quote, ChevronRight, CheckCircle } from 'lucide-react'
 
 export const metadata = {
   title: 'Legacy Wealth Management | Rise Financial Partners',
@@ -44,13 +44,13 @@ export default function LegacyWealth() {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <a
-                href="#checklist"
+              <Link
+                href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-rise-navy bg-white rounded-full hover:bg-rise-cream transition-all duration-300 shadow-2xl shadow-black/20 hover:-translate-y-0.5 group"
               >
                 <Download className="w-4 h-4" />
-                Download the Retirement Checklist
-              </a>
+                Get the Retirement Checklist
+              </Link>
               <Link
                 href="/contact"
                 className="inline-flex items-center justify-center gap-2 px-8 py-4 text-base font-medium text-white border-2 border-white/20 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300"
@@ -423,13 +423,13 @@ export default function LegacyWealth() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <a
-              href="#"
+            <Link
+              href="/contact"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg font-medium text-rise-navy bg-white rounded-full hover:bg-rise-cream transition-all duration-300 shadow-2xl shadow-black/20 hover:-translate-y-1 group"
             >
               <Download className="w-5 h-5" />
-              Download the Free Checklist
-            </a>
+              Get the Free Checklist
+            </Link>
             <Link
               href="/contact"
               className="inline-flex items-center justify-center gap-2 px-10 py-5 text-lg font-medium text-white border-2 border-white/20 rounded-full hover:bg-white/10 hover:border-white/40 transition-all duration-300"
