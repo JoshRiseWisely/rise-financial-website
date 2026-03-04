@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Plus, Edit, Trash2, Send } from 'lucide-react'
+import { Plus, Edit, Trash2, Send, Globe } from 'lucide-react'
 
 interface PageItem {
   id: string
@@ -65,6 +65,20 @@ export default function PagesListPage() {
       }
     } catch {
       alert('Failed to delete page')
+    }
+  }
+
+  async function handlePublish(id: string) {
+    try {
+      const res = await fetch(`/api/pages/${id}/publish`, { method: 'POST' })
+      if (res.ok) {
+        fetchPages()
+      } else {
+        const data = await res.json()
+        alert(data.error || 'Failed to publish')
+      }
+    } catch {
+      alert('Failed to publish page')
     }
   }
 
@@ -141,6 +155,15 @@ export default function PagesListPage() {
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-1">
+                      {page.status === 'approved' && (
+                        <button
+                          onClick={() => handlePublish(page.id)}
+                          title="Publish"
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
+                        >
+                          <Globe size={16} />
+                        </button>
+                      )}
                       {(page.status === 'draft' || page.status === 'rejected') && (
                         <button
                           onClick={() => handleSubmitReview(page.id)}

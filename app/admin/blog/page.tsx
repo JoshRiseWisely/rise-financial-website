@@ -2,7 +2,7 @@
 
 import { useEffect, useState } from 'react'
 import Link from 'next/link'
-import { Plus, Edit, Trash2, Send } from 'lucide-react'
+import { Plus, Edit, Trash2, Send, Globe } from 'lucide-react'
 
 interface BlogPost {
   id: string
@@ -67,6 +67,20 @@ export default function BlogListPage() {
       }
     } catch {
       alert('Failed to delete post')
+    }
+  }
+
+  async function handlePublish(id: string) {
+    try {
+      const res = await fetch(`/api/blog/${id}/publish`, { method: 'POST' })
+      if (res.ok) {
+        fetchPosts()
+      } else {
+        const data = await res.json()
+        alert(data.error || 'Failed to publish')
+      }
+    } catch {
+      alert('Failed to publish post')
     }
   }
 
@@ -139,6 +153,15 @@ export default function BlogListPage() {
                   </td>
                   <td className="px-4 py-3 text-right">
                     <div className="flex items-center justify-end gap-1">
+                      {post.status === 'approved' && (
+                        <button
+                          onClick={() => handlePublish(post.id)}
+                          title="Publish"
+                          className="p-1.5 text-green-600 hover:bg-green-50 rounded transition-colors"
+                        >
+                          <Globe size={16} />
+                        </button>
+                      )}
                       {(post.status === 'draft' || post.status === 'rejected') && (
                         <button
                           onClick={() => handleSubmitReview(post.id)}

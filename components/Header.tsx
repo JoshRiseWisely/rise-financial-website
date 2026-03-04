@@ -18,6 +18,7 @@ const navigation = [
     ]
   },
   { name: 'Services', href: '/services' },
+  { name: 'Blog', href: '/blog' },
   { name: 'Community', href: '/community' },
   { name: 'Contact', href: '/contact' },
 ]

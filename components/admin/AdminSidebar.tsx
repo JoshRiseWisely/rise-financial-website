@@ -1,24 +1,49 @@
 'use client'
 
+import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, FileText, BookOpen, User, LogOut, ArrowLeft } from 'lucide-react'
+import { LayoutDashboard, FileText, BookOpen, User, LogOut, ArrowLeft, ClipboardCheck } from 'lucide-react'
 
 const NAV_ITEMS = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/blog', label: 'Blog Posts', icon: BookOpen },
   { href: '/admin/pages', label: 'Pages', icon: FileText },
+  { href: '/admin/compliance', label: 'Compliance', icon: ClipboardCheck, requiresCompliance: true },
   { href: '/admin/profile', label: 'My Profile', icon: User },
 ]
 
 export default function AdminSidebar() {
   const pathname = usePathname()
   const router = useRouter()
+  const [userRole, setUserRole] = useState<string | null>(null)
+
+  useEffect(() => {
+    async function fetchRole() {
+      try {
+        const res = await fetch('/api/auth/me')
+        if (res.ok) {
+          const { user } = await res.json()
+          setUserRole(user.role)
+        }
+      } catch {
+        // ignore — sidebar still works, just won't show compliance link
+      }
+    }
+    fetchRole()
+  }, [])
 
   async function handleLogout() {
     await fetch('/api/auth/logout', { method: 'POST' })
     router.push('/admin/login')
   }
+
+  const visibleItems = NAV_ITEMS.filter((item) => {
+    if (item.requiresCompliance) {
+      return userRole === 'admin' || userRole === 'compliance'
+    }
+    return true
+  })
 
   return (
     <aside className="w-64 bg-white border-r border-gray-200 shadow-sm flex flex-col">
@@ -27,7 +52,7 @@ export default function AdminSidebar() {
       </div>
 
       <nav className="p-4 space-y-1 flex-1">
-        {NAV_ITEMS.map((item) => {
+        {visibleItems.map((item) => {
           const isActive = pathname === item.href || pathname.startsWith(item.href + '/')
           const Icon = item.icon
           return (

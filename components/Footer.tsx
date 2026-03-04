@@ -14,6 +14,7 @@ const footerLinks = {
     { name: 'Legacy Wealth', href: '/legacy-wealth' },
   ],
   resources: [
+    { name: 'Blog', href: '/blog' },
     { name: 'Client Portal', href: '/client-login' },
   ],
 }

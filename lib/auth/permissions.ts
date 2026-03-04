@@ -28,6 +28,9 @@ export const Permissions = {
   
   // Check if user can view compliance queue
   canViewComplianceQueue: (role: UserRole) => ['admin', 'compliance'].includes(role),
+
+  // Check if user can publish content (final step after approval)
+  canPublishContent: (role: UserRole) => role === 'admin',
 }
 
 export function getUserPermissions(role: UserRole) {
@@ -41,5 +44,6 @@ export function getUserPermissions(role: UserRole) {
     canUseAI: Permissions.canUseAI(role),
     canManageUsers: Permissions.canManageUsers(role),
     canViewComplianceQueue: Permissions.canViewComplianceQueue(role),
+    canPublishContent: Permissions.canPublishContent(role),
   }
 }
