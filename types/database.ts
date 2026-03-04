@@ -88,6 +88,83 @@ export interface Database {
           updated_at?: string
         }
       }
+      pages: {
+        Row: {
+          id: string
+          author_id: string
+          title: string
+          slug: string
+          content: string
+          template: 'standard' | 'landing' | 'guide' | 'case-study'
+          status: 'draft' | 'pending_review' | 'approved' | 'published' | 'rejected'
+          meta_title: string | null
+          meta_description: string | null
+          featured_image_url: string | null
+          is_ai_generated: boolean
+          ai_generation_id: string | null
+          published_at: string | null
+          created_at: string
+          updated_at: string
+        }
+        Insert: {
+          author_id: string
+          title: string
+          slug: string
+          content: string
+          template?: 'standard' | 'landing' | 'guide' | 'case-study'
+          status?: 'draft' | 'pending_review' | 'approved' | 'published' | 'rejected'
+          meta_title?: string | null
+          meta_description?: string | null
+          featured_image_url?: string | null
+          is_ai_generated?: boolean
+          ai_generation_id?: string | null
+          published_at?: string | null
+        }
+        Update: {
+          title?: string
+          content?: string
+          template?: 'standard' | 'landing' | 'guide' | 'case-study'
+          status?: 'draft' | 'pending_review' | 'approved' | 'published' | 'rejected'
+          meta_title?: string | null
+          meta_description?: string | null
+          featured_image_url?: string | null
+          is_ai_generated?: boolean
+          ai_generation_id?: string | null
+          published_at?: string | null
+          updated_at?: string
+        }
+      }
+      compliance_queue: {
+        Row: {
+          id: string
+          content_type: 'blog_post' | 'page' | 'advisor_profile'
+          content_id: string
+          submitted_by: string
+          submitted_at: string
+          reviewer_id: string | null
+          reviewed_at: string | null
+          status: 'pending' | 'approved' | 'rejected'
+          reviewer_notes: string | null
+          changes_summary: string | null
+          content_snapshot: Json
+          created_at: string
+        }
+        Insert: {
+          content_type: 'blog_post' | 'page' | 'advisor_profile'
+          content_id: string
+          submitted_by: string
+          status?: 'pending' | 'approved' | 'rejected'
+          reviewer_notes?: string | null
+          changes_summary?: string | null
+          content_snapshot?: Json
+        }
+        Update: {
+          reviewer_id?: string | null
+          reviewed_at?: string | null
+          status?: 'pending' | 'approved' | 'rejected'
+          reviewer_notes?: string | null
+        }
+      }
       advisor_profiles: {
         Row: {
           id: string
