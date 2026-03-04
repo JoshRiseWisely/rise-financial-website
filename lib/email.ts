@@ -1,7 +1,13 @@
 import { Resend } from 'resend'
 import { createAdminClient } from '@/lib/supabase/admin'
 
-const resend = new Resend(process.env.RESEND_API_KEY)
+let _resend: Resend | null = null
+function getResend(): Resend {
+  if (!_resend) {
+    _resend = new Resend(process.env.RESEND_API_KEY)
+  }
+  return _resend
+}
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://rise-financial-website-production-bfa8.up.railway.app'
 const FROM_ADDRESS = 'Rise Financial Website <onboarding@resend.dev>'
@@ -120,7 +126,7 @@ export async function notifyContentSubmitted(params: {
       </p>
     `
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_ADDRESS,
       to,
       subject,
@@ -189,7 +195,7 @@ export async function notifyContentReviewed(params: {
       </p>
     `
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_ADDRESS,
       to: author.email,
       subject,
@@ -230,7 +236,7 @@ export async function notifyContentPublished(params: {
       </p>
     `
 
-    await resend.emails.send({
+    await getResend().emails.send({
       from: FROM_ADDRESS,
       to: author.email,
       subject,
