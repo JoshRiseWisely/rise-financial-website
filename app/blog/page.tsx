@@ -2,6 +2,9 @@ import { Metadata } from 'next'
 import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 
+// Revalidate blog listing every hour
+export const revalidate = 3600
+
 export const metadata: Metadata = {
   title: 'Blog',
   description: 'Insights on retirement planning, investing, tax strategies, and financial wellness from the Rise Financial Partners team.',

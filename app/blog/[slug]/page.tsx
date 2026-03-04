@@ -4,6 +4,9 @@ import { notFound } from 'next/navigation'
 import { ArrowLeft } from 'lucide-react'
 import { createClient } from '@/lib/supabase/server'
 
+// Revalidate published blog posts every hour
+export const revalidate = 3600
+
 interface BlogPost {
   id: string
   title: string
