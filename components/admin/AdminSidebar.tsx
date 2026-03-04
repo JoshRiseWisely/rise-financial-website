@@ -3,13 +3,14 @@
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
 import { usePathname, useRouter } from 'next/navigation'
-import { LayoutDashboard, FileText, BookOpen, User, LogOut, ArrowLeft, ClipboardCheck } from 'lucide-react'
+import { LayoutDashboard, FileText, BookOpen, User, LogOut, ArrowLeft, ClipboardCheck, BarChart3 } from 'lucide-react'
 
 const NAV_ITEMS = [
   { href: '/admin/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   { href: '/admin/blog', label: 'Blog Posts', icon: BookOpen },
   { href: '/admin/pages', label: 'Pages', icon: FileText },
   { href: '/admin/compliance', label: 'Compliance', icon: ClipboardCheck, requiresCompliance: true },
+  { href: '/admin/analytics', label: 'Analytics', icon: BarChart3, requiresAdmin: true },
   { href: '/admin/profile', label: 'My Profile', icon: User },
 ]
 
@@ -39,7 +40,10 @@ export default function AdminSidebar() {
   }
 
   const visibleItems = NAV_ITEMS.filter((item) => {
-    if (item.requiresCompliance) {
+    if ('requiresAdmin' in item && item.requiresAdmin) {
+      return userRole === 'admin'
+    }
+    if ('requiresCompliance' in item && item.requiresCompliance) {
       return userRole === 'admin' || userRole === 'compliance'
     }
     return true

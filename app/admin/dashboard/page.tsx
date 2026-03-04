@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from 'react'
 import Link from 'next/link'
-import { BookOpen, ClipboardCheck, FileText, Users, Plus, ArrowRight } from 'lucide-react'
+import { BookOpen, ClipboardCheck, FileText, Users, Plus, ArrowRight, Eye, BarChart3 } from 'lucide-react'
 
 interface DashboardStats {
   publishedBlogPosts: number
   pendingApprovals: number
   totalPages: number
+  pageViewsWeek: number
+  pageViewsToday: number
   recentActivity: {
     id: string
     content_type: string
@@ -94,17 +96,21 @@ export default function Dashboard() {
         <div className="bg-white p-6 rounded-lg shadow">
           <div className="flex items-center gap-3 mb-3">
             <div className="p-2 bg-purple-100 rounded-lg">
-              <Users size={20} className="text-purple-700" />
+              <Eye size={20} className="text-purple-700" />
             </div>
-            <h3 className="text-gray-600 text-sm font-medium">Team Members</h3>
+            <h3 className="text-gray-600 text-sm font-medium">Page Views</h3>
           </div>
-          <p className="text-3xl font-bold text-rise-navy">4</p>
-          <p className="text-gray-500 text-sm mt-1">Active users</p>
+          <p className="text-3xl font-bold text-rise-navy">
+            {loading ? '—' : stats?.pageViewsWeek ?? 0}
+          </p>
+          <p className="text-gray-500 text-sm mt-1">
+            Last 7 days · {loading ? '—' : stats?.pageViewsToday ?? 0} today
+          </p>
         </div>
       </div>
 
       {/* Quick Links */}
-      <div className="mt-8 grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
         <Link
           href="/admin/compliance"
           className="flex items-center justify-between p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
@@ -132,6 +138,13 @@ export default function Dashboard() {
         >
           <Plus size={18} className="text-rise-navy" />
           <span className="text-sm font-medium text-gray-700">Create Page</span>
+        </Link>
+        <Link
+          href="/admin/analytics"
+          className="flex items-center gap-3 p-4 bg-white rounded-lg shadow hover:shadow-md transition-shadow"
+        >
+          <BarChart3 size={18} className="text-rise-navy" />
+          <span className="text-sm font-medium text-gray-700">View Analytics</span>
         </Link>
       </div>
 

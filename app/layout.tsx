@@ -8,6 +8,10 @@ const ChatWidget = dynamic(() => import('@/components/ChatWidget'), {
   ssr: false,
 })
 
+const AnalyticsTracker = dynamic(() => import('@/components/AnalyticsTracker'), {
+  ssr: false,
+})
+
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rise-financial-website-production-bfa8.up.railway.app'
 
 export const metadata: Metadata = {
@@ -56,6 +60,7 @@ export default function RootLayout({
         </main>
         <Footer />
         <ChatWidget />
+        <AnalyticsTracker />
       </body>
     </html>
   )
