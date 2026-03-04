@@ -1,5 +1,6 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAuthenticatedClient, isErrorResponse } from '@/lib/supabase/route-handler'
+import { notifyContentSubmitted } from '@/lib/email'
 
 export async function POST(
   _request: NextRequest,
@@ -68,6 +69,13 @@ export async function POST(
       console.error('[api/blog/submit-review] Queue error:', queueError)
       // Don't fail the request — the status was already updated
     }
+
+    void notifyContentSubmitted({
+      contentType: 'blog_post',
+      contentTitle: post.title,
+      contentId: post.id,
+      submitterName: profile.full_name,
+    })
 
     return NextResponse.json({ success: true, status: 'pending_review' })
   } catch (err) {

@@ -30,18 +30,41 @@ export async function generateMetadata({
 
   const { data: page } = await supabase
     .from('pages')
-    .select('title, meta_title, meta_description')
+    .select('title, meta_title, meta_description, slug, featured_image_url')
     .eq('slug', slug)
     .eq('status', 'published')
     .single()
 
   if (!page) {
-    return { title: 'Page Not Found | Rise Financial Partners' }
+    return { title: 'Page Not Found' }
   }
 
+  const title = page.meta_title || page.title
+  const description = page.meta_description || undefined
+
   return {
-    title: page.meta_title || `${page.title} | Rise Financial Partners`,
-    description: page.meta_description || undefined,
+    title,
+    description,
+    alternates: {
+      canonical: `/p/${page.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/p/${page.slug}`,
+      type: 'website',
+      ...(page.featured_image_url && {
+        images: [{ url: page.featured_image_url, alt: page.title }],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      ...(page.featured_image_url && {
+        images: [page.featured_image_url],
+      }),
+    },
   }
 }
 

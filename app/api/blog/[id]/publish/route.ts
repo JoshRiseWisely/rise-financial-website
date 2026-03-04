@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAuthenticatedClient, isErrorResponse } from '@/lib/supabase/route-handler'
 import { Permissions } from '@/lib/auth/permissions'
+import { notifyContentPublished } from '@/lib/email'
 
 export async function POST(
   _request: NextRequest,
@@ -19,7 +20,7 @@ export async function POST(
 
     const { data: post, error: fetchError } = await supabase
       .from('blog_posts')
-      .select('id, status')
+      .select('id, status, slug, title, author_id')
       .eq('id', id)
       .single()
 
@@ -46,6 +47,13 @@ export async function POST(
       console.error('[api/blog/publish] Update error:', updateError)
       return NextResponse.json({ error: 'Failed to publish' }, { status: 500 })
     }
+
+    void notifyContentPublished({
+      contentType: 'blog_post',
+      contentTitle: post.title,
+      contentSlug: post.slug,
+      authorId: post.author_id,
+    })
 
     return NextResponse.json({ success: true, status: 'published' })
   } catch (err) {

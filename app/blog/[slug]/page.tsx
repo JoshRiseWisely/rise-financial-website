@@ -39,18 +39,42 @@ export async function generateMetadata({
 
   const { data: post } = await supabase
     .from('blog_posts')
-    .select('title, seo_title, seo_description, excerpt')
+    .select('title, seo_title, seo_description, excerpt, slug, featured_image_url, published_at')
     .eq('slug', slug)
     .eq('status', 'published')
     .single()
 
   if (!post) {
-    return { title: 'Post Not Found | Rise Financial Partners' }
+    return { title: 'Post Not Found' }
   }
 
+  const title = post.seo_title || post.title
+  const description = post.seo_description || post.excerpt || undefined
+
   return {
-    title: post.seo_title || `${post.title} | Rise Financial Partners`,
-    description: post.seo_description || post.excerpt || undefined,
+    title,
+    description,
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+    },
+    openGraph: {
+      title,
+      description,
+      url: `/blog/${post.slug}`,
+      type: 'article',
+      publishedTime: post.published_at,
+      ...(post.featured_image_url && {
+        images: [{ url: post.featured_image_url, alt: post.title }],
+      }),
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title,
+      description,
+      ...(post.featured_image_url && {
+        images: [post.featured_image_url],
+      }),
+    },
   }
 }
 
@@ -75,8 +99,39 @@ export default async function BlogPostPage({
 
   const blogPost = post as unknown as BlogPost
 
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'https://rise-financial-website-production-bfa8.up.railway.app'
+  const jsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'Article',
+    headline: blogPost.title,
+    description: blogPost.excerpt || undefined,
+    image: blogPost.featured_image_url || undefined,
+    datePublished: blogPost.published_at,
+    author: {
+      '@type': 'Person',
+      name: blogPost.profiles?.full_name || 'Rise Team',
+    },
+    publisher: {
+      '@type': 'Organization',
+      name: 'Rise Financial Partners',
+      logo: {
+        '@type': 'ImageObject',
+        url: `${siteUrl}/images/logo.png`,
+      },
+    },
+    url: `${siteUrl}/blog/${blogPost.slug}`,
+    mainEntityOfPage: {
+      '@type': 'WebPage',
+      '@id': `${siteUrl}/blog/${blogPost.slug}`,
+    },
+  }
+
   return (
     <div className="pt-20 bg-rise-cream min-h-screen">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       {/* Featured Image */}
       {blogPost.featured_image_url && (
         <div className="max-w-5xl mx-auto px-6 pt-8">

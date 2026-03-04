@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from 'next/server'
 import { z } from 'zod'
 import { getAuthenticatedClient, isErrorResponse } from '@/lib/supabase/route-handler'
 import { Permissions } from '@/lib/auth/permissions'
+import { notifyContentReviewed } from '@/lib/email'
 
 const reviewSchema = z.object({
   action: z.enum(['approve', 'reject']),
@@ -114,6 +115,15 @@ export async function POST(
       console.error(`[api/compliance/[id]] Content update error (${contentTable}):`, contentError)
       // Don't fail — the queue was already updated
     }
+
+    void notifyContentReviewed({
+      contentType: item.content_type,
+      contentTitle: (item.content_snapshot as { title: string }).title,
+      contentId: item.content_id,
+      authorId: item.submitted_by,
+      action: newStatus,
+      reviewerNotes: reviewer_notes,
+    })
 
     return NextResponse.json({ success: true, status: newStatus })
   } catch (err) {

@@ -3,8 +3,17 @@ import Link from 'next/link'
 import { createClient } from '@/lib/supabase/server'
 
 export const metadata: Metadata = {
-  title: 'Blog | Rise Financial Partners',
+  title: 'Blog',
   description: 'Insights on retirement planning, investing, tax strategies, and financial wellness from the Rise Financial Partners team.',
+  alternates: {
+    canonical: '/blog',
+  },
+  openGraph: {
+    title: 'Blog | Rise Financial Partners',
+    description: 'Insights on retirement planning, investing, tax strategies, and financial wellness from the Rise Financial Partners team.',
+    url: '/blog',
+    type: 'website',
+  },
 }
 
 interface BlogPost {
