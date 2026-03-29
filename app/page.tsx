@@ -226,7 +226,7 @@ export default function Home() {
             See If Rise Is Right for You
           </h2>
           <p className="text-lg text-rise-slate max-w-2xl mx-auto mb-10">
-            Not sure where to start? Our virtual advisor can help you explore whether Rise Financial Partners is the right fit for your financial goals. It only takes a few minutes.
+            Not sure where to start? Chat with our virtual assistant to see if Rise Financial Partners might be a good fit for your financial goals. It only takes a few minutes.
           </p>
 
           <OpenChatButton />
