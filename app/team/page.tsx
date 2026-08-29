@@ -29,7 +29,7 @@ const team = [
     role: 'Business Consultant & Wealth Advisor',
     slug: 'jeff-speers',
     bio: 'Jeff brings 20 years of experience serving families and small businesses as a trusted financial advisor, specializing in retirement income and business consulting.',
-    image: '/images/team/jeff-speers.png',
+    image: '/images/team/jeff-speers.jpg',
   },
 ]
 
@@ -74,6 +74,7 @@ export default function TeamPage() {
                       src={member.image} 
                       alt={member.name}
                       fill
+                      sizes="(min-width: 640px) 192px, 100vw"
                       className="object-cover"
                     />
                   </div>

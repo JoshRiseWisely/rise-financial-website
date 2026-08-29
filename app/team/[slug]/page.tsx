@@ -117,7 +117,7 @@ const teamData: Record<string, {
     credentials: 'RICP® | ASBC®',
     role: 'Business Consultant',
     secondaryRole: 'Wealth Advisor',
-    image: '/images/team/jeff-speers.png',
+    image: '/images/team/jeff-speers.jpg',
     email: 'jeff@risewisely.com',
     phone: '941-628-5492',
     location: 'Sarasota, FL',
@@ -183,6 +183,7 @@ export default function AdvisorPage({ params }: { params: { slug: string } }) {
                   src={advisor.image}
                   alt={advisor.name}
                   fill
+                  sizes="(min-width: 1024px) 400px, 100vw"
                   className="object-cover"
                   priority
                 />

@@ -318,7 +318,7 @@ export default function HomeAlt() {
               {
                 name: 'Jeff Speers, RICP® ASBC®',
                 role: 'Business Consultant & Wealth Advisor',
-                image: '/images/team/jeff-speers.png',
+                image: '/images/team/jeff-speers.jpg',
                 slug: 'jeff-speers',
               },
             ].map((member, i) => (
@@ -332,6 +332,7 @@ export default function HomeAlt() {
                     src={member.image}
                     alt={member.name}
                     fill
+                    sizes="(min-width: 1024px) 25vw, (min-width: 640px) 50vw, 100vw"
                     className="object-cover group-hover:scale-105 transition-transform duration-700"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-rise-navy/60 via-transparent to-transparent"></div>
