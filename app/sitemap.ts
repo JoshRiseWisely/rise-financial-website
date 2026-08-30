@@ -14,6 +14,8 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     { url: `${siteUrl}/community`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.6 },
     { url: `${siteUrl}/legacy-wealth`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
     { url: `${siteUrl}/risknumber`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.8 },
+    { url: `${siteUrl}/faq`, lastModified: new Date(), changeFrequency: 'monthly', priority: 0.7 },
+    { url: `${siteUrl}/client-login`, lastModified: new Date(), changeFrequency: 'yearly', priority: 0.5 },
   ]
 
   // Published blog posts
