@@ -21,6 +21,17 @@ const nextConfig = {
     formats: ['image/avif', 'image/webp'],
   },
 
+  // Keep the earlier hyphenated URL working
+  async redirects() {
+    return [
+      {
+        source: '/life-insurance-application',
+        destination: '/lifeinsuranceapplicationform',
+        permanent: true,
+      },
+    ]
+  },
+
   // Security headers
   async headers() {
     return [
